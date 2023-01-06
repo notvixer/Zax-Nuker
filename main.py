@@ -81,6 +81,9 @@ class Zax:
   
   
   async def load(self):
+     self.members.clear()
+     self.channels.clear()
+     self.roles.clear()
     with open("core/members.txt", "r") as file:
       for line in file.readlines():
         self.members.append(int(line))
@@ -92,6 +95,7 @@ class Zax:
         self.roles.append(int(line))
     
   async def logo(self):
+
     System.Clear()
     System.Title("Zax Nuker ~ Vixer 99")
     Write.Print(self.logo, color=self.banner_color, interval=0)
@@ -108,21 +112,21 @@ class Zax:
         async with TaskPool(4_000) as pool:
           for mem in self.members:
             await pool.put(self.ban(client, mem))
-        await self.logo()
+        await self.main()
         
     elif choice == 2:
       async with aiosonic.HTTPClient(connector=self.conn) as client:
         async with TaskPool(4_000) as pool:
           for chan in self.channels:
             await pool.put(self.delc(client, chan))
-        await self.logo()
+        await self.main()
         
     elif choice == 3:
       async with aiosonic.HTTPClient(connector=self.conn) as client:
         async with TaskPool(4_000) as pool:
           for role in self.roles:
             await pool.put(self.delr(client, role))
-        await self.logo()
+        await self.main()
         
     elif choice == 4:
       async with aiosonic.HTTPClient(connector=self.conn) as client:
@@ -131,7 +135,7 @@ class Zax:
           amount = input("Amount => ")
           for i in range(int(amount)):
             await pool.put(self.createc(client, name))
-        await self.logo()
+        await self.main()
         
     elif choice == 5:
       async with aiosonic.HTTPClient(connector=self.conn) as client:
@@ -140,10 +144,10 @@ class Zax:
           amount = input("Amount => ")
           for i in range(int(amount)):
             await pool.put(self.creater(client, name))
-        await self.logo()
+        await self.main()
      
-     else:
-       await self.logo()
+    else:
+      await self.logo()
   
   
 
