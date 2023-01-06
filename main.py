@@ -38,7 +38,7 @@ class Zax:
     if response.status_code in (200, 201, 204):
       Write.Print(f"[{datetime.datetime.now().strftime("%H:%M:%S")}] Successfully Eliminated {member}\n", color=self.done_color, interval=0)
     elif response.status_code == 429:
-      Write.Print(f"[{datetime.datetime.now().strftime("%H:%M:%S")}] Ratelimited, Retrying In {response.header("Retry-After")} Seconds\n", color=self.error_color, interval=0)
+      Write.Print(f"[{datetime.datetime.now().strftime("%H:%M:%S")}] Ratelimited, Retrying In {response.headers("Retry-After")} Seconds\n", color=self.error_color, interval=0)
       await asyncio.sleep(response.headers("Retry-After"))
       await self.ban(session, member)
   
@@ -47,7 +47,7 @@ class Zax:
     if response.status_code in (200, 201, 204):
       Write.Print(f"[{datetime.datetime.now().strftime("%H:%M:%S")}] Successfully Deleted Channel {channel}\n", color=self.done_color, interval=0)
     elif response.status_code == 429:
-      Write.Print(f"[{datetime.datetime.now().strftime("%H:%M:%S")}] Ratelimited, Retrying In {response.header("Retry-After")} Seconds\n", color=self.error_color, interval=0)
+      Write.Print(f"[{datetime.datetime.now().strftime("%H:%M:%S")}] Ratelimited, Retrying In {response.headers("Retry-After")} Seconds\n", color=self.error_color, interval=0)
       await asyncio.sleep(response.headers("Retry-After"))
       await self.delc(session, channel)
   
@@ -56,7 +56,7 @@ class Zax:
     if response.status_code in (200, 201, 204):
       Write.Print(f"[{datetime.datetime.now().strftime("%H:%M:%S")}] Successfully Deleted Role {role}\n", color=self.done_color, interval=0)
     elif response.status_code == 429:
-      Write.Print(f"[{datetime.datetime.now().strftime("%H:%M:%S")}] Ratelimited, Retrying In {response.header("Retry-After")} Seconds\n", color=self.error_color, interval=0)
+      Write.Print(f"[{datetime.datetime.now().strftime("%H:%M:%S")}] Ratelimited, Retrying In {response.headers("Retry-After")} Seconds\n", color=self.error_color, interval=0)
       await asyncio.sleep(response.headers("Retry-After"))
       await self.delr(session, role)
   
@@ -65,7 +65,7 @@ class Zax:
     if response.status_code in (200, 201, 204):
       Write.Print(f"[{datetime.datetime.now().strftime("%H:%M:%S")}] Successfully Created Channel #{mame}\n", color=self.done_color, interval=0)
     elif response.status_code == 429:
-      Write.Print(f"[{datetime.datetime.now().strftime("%H:%M:%S")}] Ratelimited, Retrying In {response.header("Retry-After")} Seconds\n", color=self.error_color, interval=0)
+      Write.Print(f"[{datetime.datetime.now().strftime("%H:%M:%S")}] Ratelimited, Retrying In {response.headers("Retry-After")} Seconds\n", color=self.error_color, interval=0)
       await asyncio.sleep(response.headers("Retry-After"))
       await self.createc(session, name)
   
@@ -74,7 +74,7 @@ class Zax:
     if response.status_code in (200, 201, 204):
       Write.Print(f"[{datetime.datetime.now().strftime("%H:%M:%S")}] Successfully Created Role {name}\n", color=self.done_color, interval=0)
     elif response.status_code == 429:
-      Write.Print(f"[{datetime.datetime.now().strftime("%H:%M:%S")}] Ratelimited, Retrying In {response.header("Retry-After")} Seconds\n", color=self.error_color, interval=0)
+      Write.Print(f"[{datetime.datetime.now().strftime("%H:%M:%S")}] Ratelimited, Retrying In {response.headers("Retry-After")} Seconds\n", color=self.error_color, interval=0)
       await asyncio.sleep(response.headers("Retry-After"))
       await self.creater(session, name)
       
