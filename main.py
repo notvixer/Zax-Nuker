@@ -36,46 +36,46 @@ class Zax:
   async def ban(self, session, member):
     response = await session.put(f"https://discord.com/api/v10/guilds/{self.guild}/bans/{member}", headers={"Authorization": f"Bot {self.token}"})
     if response.status_code in (200, 201, 204):
-      Write.Print(f"[{datetime.datetime.now().strftime("%H:%M%:S}] Successfully Eliminated {member}\n", color=self.done_color, interval=0)
+      Write.Print(f"[{datetime.datetime.now().strftime("%H:%M:%S")}] Successfully Eliminated {member}\n", color=self.done_color, interval=0)
     elif response.status_code == 429:
-      Write.Print(f"{self.time} Ratelimited, Retrying In {response.header("Retry-After")} Seconds\n", color=self.error_color, interval=0)
-      await asyncio.sleep(response.header("Retry-After"))
+      Write.Print(f"[{datetime.datetime.now().strftime("%H:%M:%S")}] Ratelimited, Retrying In {response.header("Retry-After")} Seconds\n", color=self.error_color, interval=0)
+      await asyncio.sleep(response.headers("Retry-After"))
       await self.ban(session, member)
   
   async def delc(self, session, channel):
     response = await session.delete(f"https://discord.com/api/v10/channels/{channel}", headers={"Authorization": f"Bot {self.token}"})
     if response.status_code in (200, 201, 204):
-      Write.Print(f"{self.time} Successfully Deleted Channel {channel}\n", color=self.done_color, interval=0)
+      Write.Print(f"[{datetime.datetime.now().strftime("%H:%M:%S")}] Successfully Deleted Channel {channel}\n", color=self.done_color, interval=0)
     elif response.status_code == 429:
-      Write.Print(f"{self.time} Ratelimited, Retrying In {response.header("Retry-After")} Seconds\n", color=self.error_color, interval=0)
-      await asyncio.sleep(response.header("Retry-After"))
+      Write.Print(f"[{datetime.datetime.now().strftime("%H:%M:%S")}] Ratelimited, Retrying In {response.header("Retry-After")} Seconds\n", color=self.error_color, interval=0)
+      await asyncio.sleep(response.headers("Retry-After"))
       await self.delc(session, channel)
   
   async def delr(self, session, role):
     response = await session.delete(f"https://discord.com/api/v10/roles/{role}", headers={"Authorization": f"Bot {self.token}"})
     if response.status_code in (200, 201, 204):
-      Write.Print(f"{self.time} Successfully Deleted Role {role}\n", color=self.done_color, interval=0)
+      Write.Print(f"[{datetime.datetime.now().strftime("%H:%M:%S")}] Successfully Deleted Role {role}\n", color=self.done_color, interval=0)
     elif response.status_code == 429:
-      Write.Print(f"Ratelimited, Retrying In {response.header("Retry-After")} Seconds\n", color=self.error_color, interval=0)
-      await asyncio.sleep(response.header("Retry-After"))
+      Write.Print(f"[{datetime.datetime.now().strftime("%H:%M:%S")}] Ratelimited, Retrying In {response.header("Retry-After")} Seconds\n", color=self.error_color, interval=0)
+      await asyncio.sleep(response.headers("Retry-After"))
       await self.delr(session, role)
   
   async def createc(self, session, name):
     response = await session.post(f"https://discord.com/api/v10/guilds/{self.guild}/channels", headers={"Authorization": f"Bot {self.token}"}, json={"name": name, "type": 0})
     if response.status_code in (200, 201, 204):
-      Write.Print(f"{self.time} Successfully Created Channel #{mame}\n", color=self.done_color, interval=0)
+      Write.Print(f"[{datetime.datetime.now().strftime("%H:%M:%S")}] Successfully Created Channel #{mame}\n", color=self.done_color, interval=0)
     elif response.status_code == 429:
-      Write.Print(f"{self.time} Ratelimited, Retrying In {response.header("Retry-After")} Seconds\n", color=self.error_color, interval=0)
-      await asyncio.sleep(response.header("Retry-After"))
+      Write.Print(f"[{datetime.datetime.now().strftime("%H:%M:%S")}] Ratelimited, Retrying In {response.header("Retry-After")} Seconds\n", color=self.error_color, interval=0)
+      await asyncio.sleep(response.headers("Retry-After"))
       await self.createc(session, name)
   
   async def creater(self, session, name):
     response = await session.post(f"https://discord.com/api/v10/guilds/{self.guild}/roles", headers={"Authorization": f"Bot {self.token}"}, json={"name": name})
     if response.status_code in (200, 201, 204):
-      Write.Print(f"{self.time} Successfully Created Role {name}\n", color=self.done_color, interval=0)
+      Write.Print(f"[{datetime.datetime.now().strftime("%H:%M:%S")}] Successfully Created Role {name}\n", color=self.done_color, interval=0)
     elif response.status_code == 429:
-      Write.Print(f"{self.time} Ratelimited, Retrying In {response.header("Retry-After")} Seconds\n", color=self.error_color, interval=0)
-      await asyncio.sleep(response.header("Retry-After"))
+      Write.Print(f"[{datetime.datetime.now().strftime("%H:%M:%S")}] Ratelimited, Retrying In {response.header("Retry-After")} Seconds\n", color=self.error_color, interval=0)
+      await asyncio.sleep(response.headers("Retry-After"))
       await self.creater(session, name)
       
   
