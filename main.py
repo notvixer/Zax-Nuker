@@ -15,7 +15,7 @@ class Zax:
     self.choice_color = Colors.blue_to_purple
     self.done_color = Colors.cyan_to_blue
     self.error_color = Colors.red_to_purple
-    self.logo = """
+    self._logo = """
     
      ________  ________     ___    ___ 
     |\_____  \|\   __  \   |\  \  /  /|
@@ -36,9 +36,9 @@ class Zax:
   async def ban(self, session, member):
     response = await session.put(f"https://discord.com/api/v10/guilds/{self.guild}/bans/{member}", headers={"Authorization": f"Bot {self.token}"})
     if response.status_code in (200, 201, 204):
-      Write.Print(f"[{datetime.datetime.now().strftime("%H:%M:%S")}] Successfully Eliminated {member}\n", color=self.done_color, interval=0)
+      Write.Print(f'[{datetime.datetime.now().strftime("%H:%M:%S")}] Successfully Eliminated {member}\n', color=self.done_color, interval=0)
     elif response.status_code == 429:
-      Write.Print(f"[{datetime.datetime.now().strftime("%H:%M:%S")}] Ratelimited, Retrying In {response.headers("Retry-After")} Seconds\n", color=self.error_color, interval=0)
+      Write.Print(f'[{datetime.datetime.now().strftime("%H:%M:%S")}] Ratelimited, Retrying In {response.headers("Retry-After")} Seconds\n', color=self.error_color, interval=0)
       await asyncio.sleep(response.headers("Retry-After"))
       await self.ban(self, session, member)
   
