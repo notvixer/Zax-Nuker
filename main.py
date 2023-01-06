@@ -1,5 +1,5 @@
 import aiosonic, asyncio, datetime
-from pystyle import Colors, Write
+from pystyle import Colors, Write, System
 from tasksio import TaskPool
 from aiosonic import Timeouts, TCPConnector
 
@@ -70,7 +70,7 @@ class Zax:
       await self.createc(self, session, name)
   
   async def creater(self, session, name):
-    response = await session.post(fhttps://discord.com/api/v10/guilds/{self.guild}/roles", headers={"Authorization": f"Bot {self.token}"}, json={"name": name})
+    response = await session.post(f"https://discord.com/api/v10/guilds/{self.guild}/roles", headers={"Authorization": f"Bot {self.token}"}, json={"name": name})
     if response.status_code in (200, 201, 204):
       Write.Print(f'[{datetime.datetime.now().strftime("%H:%M:%S")}] Successfully Created Role {name}\n', color=self.done_color, interval=0)
     elif response.status_code == 429:
@@ -98,7 +98,7 @@ class Zax:
 
     System.Clear()
     System.Title("Zax Nuker ~ Vixer 99")
-    Write.Print(self._logo, color=self.banner_color, interval=0)
+    Write.Print(self._logo, color=self.banner_color, interval=0.00)
     Write.Print("[1] Massban\n[2] Delete Channels\n[3] Delete Roles\n[4] Create Channels\n[5] Create Roles \n", color=self.choice_color, interval=0)
     global choice
     choice = int(input("Choice => "))
