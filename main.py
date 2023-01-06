@@ -98,7 +98,7 @@ class Zax:
 
     System.Clear()
     System.Title("Zax Nuker ~ Vixer 99")
-    Write.Print(self.logo, color=self.banner_color, interval=0)
+    Write.Print(self._logo, color=self.banner_color, interval=0)
     Write.Print("[1] Massban\n[2] Delete Channels\n[3] Delete Roles\n[4] Create Channels\n[5] Create Roles \n", color=self.choice_color, interval=0)
     global choice
     choice = int(input("Choice => "))
@@ -147,7 +147,7 @@ class Zax:
         await self.main()
      
     else:
-      await self.logo()
+      await self.main()
   
   
 
