@@ -40,7 +40,7 @@ class Zax:
     elif response.status_code == 429:
       Write.Print(f"[{datetime.datetime.now().strftime("%H:%M:%S")}] Ratelimited, Retrying In {response.headers("Retry-After")} Seconds\n", color=self.error_color, interval=0)
       await asyncio.sleep(response.headers("Retry-After"))
-      await self.ban(session, member)
+      await self.ban(self, session, member)
   
   async def delc(self, session, channel):
     response = await session.delete(f"https://discord.com/api/v10/channels/{channel}", headers={"Authorization": f"Bot {self.token}"})
@@ -49,7 +49,7 @@ class Zax:
     elif response.status_code == 429:
       Write.Print(f"[{datetime.datetime.now().strftime("%H:%M:%S")}] Ratelimited, Retrying In {response.headers("Retry-After")} Seconds\n", color=self.error_color, interval=0)
       await asyncio.sleep(response.headers("Retry-After"))
-      await self.delc(session, channel)
+      await self.delc(self, session, channel)
   
   async def delr(self, session, role):
     response = await session.delete(f"https://discord.com/api/v10/roles/{role}", headers={"Authorization": f"Bot {self.token}"})
@@ -58,7 +58,7 @@ class Zax:
     elif response.status_code == 429:
       Write.Print(f"[{datetime.datetime.now().strftime("%H:%M:%S")}] Ratelimited, Retrying In {response.headers("Retry-After")} Seconds\n", color=self.error_color, interval=0)
       await asyncio.sleep(response.headers("Retry-After"))
-      await self.delr(session, role)
+      await self.delr(self, session, role)
   
   async def createc(self, session, name):
     response = await session.post(f"https://discord.com/api/v10/guilds/{self.guild}/channels", headers={"Authorization": f"Bot {self.token}"}, json={"name": name, "type": 0})
@@ -67,7 +67,7 @@ class Zax:
     elif response.status_code == 429:
       Write.Print(f"[{datetime.datetime.now().strftime("%H:%M:%S")}] Ratelimited, Retrying In {response.headers("Retry-After")} Seconds\n", color=self.error_color, interval=0)
       await asyncio.sleep(response.headers("Retry-After"))
-      await self.createc(session, name)
+      await self.createc(self, session, name)
   
   async def creater(self, session, name):
     response = await session.post(f"https://discord.com/api/v10/guilds/{self.guild}/roles", headers={"Authorization": f"Bot {self.token}"}, json={"name": name})
@@ -76,7 +76,7 @@ class Zax:
     elif response.status_code == 429:
       Write.Print(f"[{datetime.datetime.now().strftime("%H:%M:%S")}] Ratelimited, Retrying In {response.headers("Retry-After")} Seconds\n", color=self.error_color, interval=0)
       await asyncio.sleep(response.headers("Retry-After"))
-      await self.creater(session, name)
+      await self.creater(self, session, name)
       
   
   
