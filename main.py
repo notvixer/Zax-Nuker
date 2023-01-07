@@ -81,9 +81,9 @@ class Zax:
   
   
   async def load(self):
-     self.members.clear()
-     self.channels.clear()
-     self.roles.clear()
+    self.members.clear()
+    self.channels.clear()
+    self.roles.clear()
     with open("core/members.txt", "r") as file:
       for line in file.readlines():
         self.members.append(int(line))
