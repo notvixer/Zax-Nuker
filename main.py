@@ -38,45 +38,45 @@ class Zax:
     if response.status_code in (200, 201, 204):
       Write.Print(f'[{datetime.datetime.now().strftime("%H:%M:%S")}] Successfully Eliminated {member}\n', color=self.done_color, interval=0)
     elif response.status_code == 429:
-      Write.Print(f'[{datetime.datetime.now().strftime("%H:%M:%S")}] Ratelimited, Retrying In {response.headers("Retry-After")} Seconds\n', color=self.error_color, interval=0)
-      await asyncio.sleep(response.headers("Retry-After"))
-      await self.ban(self, session, member)
+      Write.Print(f'[{datetime.datetime.now().strftime("%H:%M:%S")}] Ratelimited, Retrying In {response.headers["Retry-After"]} Seconds\n', color=self.error_color, interval=0)
+      await asyncio.sleep(int(response.headers["Retry-After"]))
+      await self.ban(session, member)
   
   async def delc(self, session, channel):
     response = await session.delete(f"https://discord.com/api/v10/channels/{channel}", headers={"Authorization": f"Bot {self.token}"})
     if response.status_code in (200, 201, 204):
       Write.Print(f'[{datetime.datetime.now().strftime("%H:%M:%S")}] Successfully Deleted Channel {channel}\n', color=self.done_color, interval=0)
     elif response.status_code == 429:
-      Write.Print(f'[{datetime.datetime.now().strftime("%H:%M:%S")}] Ratelimited, Retrying In {response.headers("Retry-After")} Seconds\n', color=self.error_color, interval=0)
-      await asyncio.sleep(response.headers("Retry-After"))
-      await self.delc(self, session, channel)
+      Write.Print(f'[{datetime.datetime.now().strftime("%H:%M:%S")}] Ratelimited, Retrying In {response.headers["Retry-After"]} Seconds\n', color=self.error_color, interval=0)
+      await asyncio.sleep(int(response.headers["Retry-After"]))
+      await self.delc(session, channel)
   
   async def delr(self, session, role):
     response = await session.delete(f"https://discord.com/api/v10/roles/{role}", headers={"Authorization": f"Bot {self.token}"})
     if response.status_code in (200, 201, 204):
       Write.Print(f'[{datetime.datetime.now().strftime("%H:%M:%S")}] Successfully Deleted Role {role}\n', color=self.done_color, interval=0)
     elif response.status_code == 429:
-      Write.Print(f'[{datetime.datetime.now().strftime("%H:%M:%S")}] Ratelimited, Retrying In {response.headers("Retry-After")} Seconds\n', color=self.error_color, interval=0)
-      await asyncio.sleep(response.headers("Retry-After"))
-      await self.delr(self, session, role)
+      Write.Print(f'[{datetime.datetime.now().strftime("%H:%M:%S")}] Ratelimited, Retrying In {response.headers["Retry-After"]} Seconds\n', color=self.error_color, interval=0)
+      await asyncio.sleep(int(response.headers["Retry-After"]))
+      await self.delr(session, role)
   
   async def createc(self, session, name):
     response = await session.post(f"https://discord.com/api/v10/guilds/{self.guild}/channels", headers={"Authorization": f"Bot {self.token}"}, json={"name": name, "type": 0})
     if response.status_code in (200, 201, 204):
       Write.Print(f'[{datetime.datetime.now().strftime("%H:%M:%S")}] Successfully Created Channel #{name}\n', color=self.done_color, interval=0)
     elif response.status_code == 429:
-      Write.Print(f'[{datetime.datetime.now().strftime("%H:%M:%S")}] Ratelimited, Retrying In {response.headers("Retry-After")} Seconds\n', color=self.error_color, interval=0)
-      await asyncio.sleep(response.headers("Retry-After"))
-      await self.createc(self, session, name)
+      Write.Print(f'[{datetime.datetime.now().strftime("%H:%M:%S")}] Ratelimited, Retrying In {response.headers["Retry-After"]} Seconds\n', color=self.error_color, interval=0)
+      await asyncio.sleep(int(response.headers["Retry-After"]))
+      await self.createc(session, name)
   
   async def creater(self, session, name):
     response = await session.post(f"https://discord.com/api/v10/guilds/{self.guild}/roles", headers={"Authorization": f"Bot {self.token}"}, json={"name": name})
     if response.status_code in (200, 201, 204):
       Write.Print(f'[{datetime.datetime.now().strftime("%H:%M:%S")}] Successfully Created Role {name}\n', color=self.done_color, interval=0)
     elif response.status_code == 429:
-      Write.Print(f'[{datetime.datetime.now().strftime("%H:%M:%S")}] Ratelimited, Retrying In {response.headers("Retry-After")} Seconds\n', color=self.error_color, interval=0)
-      await asyncio.sleep(response.headers("Retry-After"))
-      await self.creater(self, session, name)
+      Write.Print(f'[{datetime.datetime.now().strftime("%H:%M:%S")}] Ratelimited, Retrying In {response.headers["Retry-After"]} Seconds\n', color=self.error_color, interval=0)
+      await asyncio.sleep(int(response.headers["Retry-After"]))
+      await self.creater(session, name)
       
   
   
